@@ -7,14 +7,21 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     #region Declarations
+
     [Header("Variables")]
+
     private int _totalMoney;
     private bool _wasItemBought;
+
     [SerializeField] private int _mainHealth;
     [SerializeField] private int _mainAttack;
     [SerializeField] private int _mainSpeed;
 
     private const string UI_SCENE_NAME = "UI";
+
+    #endregion
+
+    #region GetSet
 
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; }
@@ -73,15 +80,15 @@ public class GameManager : MonoBehaviour
     {  
         if (isEquipped == true)
         {
-            _mainHealth -= itemEquipped._health;
-            _mainAttack -= itemEquipped._attack;
-            _mainSpeed -= itemEquipped._speed;
+            _mainHealth -= itemEquipped.Health;
+            _mainAttack -= itemEquipped.Attack;
+            _mainSpeed -= itemEquipped.Speed;
         }
         else
         {
-            _mainHealth += itemEquipped._health;
-            _mainAttack += itemEquipped._attack;
-            _mainSpeed += itemEquipped._speed;
+            _mainHealth += itemEquipped.Health;
+            _mainAttack += itemEquipped.Attack;
+            _mainSpeed += itemEquipped.Speed;
         }
 
         switch (itemEquippedID)
@@ -108,17 +115,17 @@ public class GameManager : MonoBehaviour
         }   
     }
 
-    public void ItemBought(int price, int itemID)
+    public void ItemBought(NewObjectScriptable price, int itemID)
     {
 
-        if (_totalMoney < price)
+        if (_totalMoney < price.Price)
         {
             UiManager.Instance.NotEnoughMoneyText();
             _wasItemBought = false;
         }
         else
         {
-            _totalMoney -= price;
+            _totalMoney -= price.Price;
             UiManager.Instance.HowMuchMoney(_totalMoney);
             _wasItemBought = true;
 

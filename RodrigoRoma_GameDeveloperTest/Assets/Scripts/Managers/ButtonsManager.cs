@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsManager : MonoBehaviour
 {
+    #region MenuButtons
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -19,4 +21,6 @@ public class ButtonsManager : MonoBehaviour
     {
         UiManager.Instance.HidePauseMenu();
     }
+
+    #endregion
 }

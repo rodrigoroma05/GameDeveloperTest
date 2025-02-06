@@ -8,7 +8,14 @@ public enum InteractionType { OpenShop, OpenInventory, ReceiveMoney }
 
 public class InteractPointAndClick : MonoBehaviour, IPointerDownHandler
 {
+    #region Declarations
+
+    [Header("InteractionType")]
     [SerializeField] private InteractionType _interactionType;
+
+    #endregion
+
+    #region Interaction
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -21,18 +28,17 @@ public class InteractPointAndClick : MonoBehaviour, IPointerDownHandler
         {
             case InteractionType.OpenShop:
                 UiManager.Instance.ShowShopMenu();
-                Debug.Log("OpenShop");
                 break;
 
             case InteractionType.OpenInventory:
                 UiManager.Instance.ShowInventoryMenu();
-                Debug.Log("OpenInventory");
                 break;
 
             case InteractionType.ReceiveMoney:
                 GameManager.Instance.ReceiveMoney();
-                Debug.Log("ReceiveMoney");
                 break;
         }
     }
+
+    #endregion
 }

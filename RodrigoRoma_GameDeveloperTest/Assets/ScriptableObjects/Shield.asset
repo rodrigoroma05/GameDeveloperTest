@@ -17,3 +17,4 @@ MonoBehaviour:
   _health: 10
   _attack: 1
   _speed: 1
+  _price: 65
