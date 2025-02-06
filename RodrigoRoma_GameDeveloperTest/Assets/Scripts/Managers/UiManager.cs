@@ -28,6 +28,11 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject _chestplateImage;
 
     [Header("Text")]
+    [SerializeField] private Text _healthStatsText;
+    [SerializeField] private Text _attackStatsText;
+    [SerializeField] private Text _speedStatsText;
+
+    [Header("Text")]
     [SerializeField] private Text _playerMoneyText;
 
     [Header("Others")]
@@ -50,6 +55,13 @@ public class UiManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Update()
+    {
+        _healthStatsText.text = "Health: " + GameManager.Instance.MainHealth.ToString();
+        _attackStatsText.text = "Attack: " + GameManager.Instance.MainAttack.ToString();
+        _speedStatsText.text = "Speed: " + GameManager.Instance.MainSpeed.ToString();
     }
 
     #endregion

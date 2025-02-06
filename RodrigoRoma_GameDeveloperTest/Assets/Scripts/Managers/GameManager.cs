@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,16 +19,13 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; }
     public bool WasItemBought { get => _wasItemBought; }
+    public int MainHealth { get => _mainHealth; set => _mainHealth = value; }
+    public int MainAttack { get => _mainAttack; set => _mainAttack = value; }
+    public int MainSpeed { get => _mainSpeed; set => _mainSpeed = value; }
 
     #endregion
 
     #region MonoBehaviour
-
-    private void Update()
-    {
-        PauseFunction();
-    }
-
     private void Awake()
     {
         if (_instance == null)
@@ -45,6 +41,18 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(LoadUI());
         }
+    }
+
+    private void Start()
+    {
+        _mainHealth = 5;
+        _mainAttack = 5;
+        _mainSpeed = 5;
+    }
+
+    private void Update()
+    {
+        PauseFunction();
     }
 
     IEnumerator LoadUI()
